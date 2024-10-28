@@ -1,0 +1,41 @@
+<h1>Профіль {{ user.username }}</h1>
+<h2>Мої борги</h2>
+<ul>
+    <li>Боржник:</li>
+    {% for debt in borrowed_debts %}
+        <li>{{ debt.lender.username }} - {{ debt.amount }} грн</li>
+    {% endfor %}
+</ul>
+
+<ul>
+    <li>Кредитор:</li>
+    {% for debt in lent_debts %}
+        <li>{{ debt.borrower.username }} - {{ debt.amount }} грн</li>
+    {% endfor %}
+</ul>
+
+<h2>Запити у друзі</h2>
+<ul>
+    {% for request in friend_requests %}
+        <li>
+            {{ request.user.username }}
+            <a href="{% url 'accept_friend_request' request.id %}">Прийняти</a>
+            <a href="{% url 'reject_friend_request' request.id %}">Відхилити</a>
+        </li>
+    {% empty %}
+        <li>Немає нових запитів.</li>
+    {% endfor %}
+</ul>
+
+<h2>Мої друзі</h2>
+<ul>
+    {% for friend in friends %}
+        <li>
+            {{ friend.username }}
+            <a href="{% url 'remove_friend' friend.id %}">Видалити</a>
+        </li>
+    {% empty %}
+        <li>Немає друзів.</li>
+    {% endfor %}
+</ul>
+

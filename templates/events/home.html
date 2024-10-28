@@ -1,0 +1,36 @@
+<!-- home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    
+
+    
+        <h1>Події</h1>
+   <ul>
+    {% for event in events %}
+        <li><a href="{% url 'event_detail' event.id %}">{{ event.name }}</a></li>
+    {% endfor %}
+</ul>
+
+<h1>Завершені події</h1>
+<ul>
+    {% for event in archived_events %}
+        <li>{{ event.name }} (Completed on: {{ event.date_completed }})</li>  <!-- Дата завершення -->
+    {% endfor %}
+</ul>
+
+{#<section class="hero">#}
+{#  <img src="#" alt="Banner">#}
+{#  <a href="#" class="btn btn-lg btn-success"> Давай почнемо!</a>#}
+{#</section>#}
+
+<section class="features">
+  <h2>Основні функції</h2>
+  <ul>
+    <li>Створення подій і розподіл витрат.</li>
+    <li>Відстеження боргів між друзями.</li>
+    <li>Автоматичний підрахунок витрат.</li>
+  </ul>
+</section>
+
+{% endblock %}
